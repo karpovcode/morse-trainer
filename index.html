@@ -193,17 +193,19 @@
 
   .bottom-panel {
     position: fixed;
-    left: 0; right: 0; bottom: 0;
-    padding: 16px 16px 44px;
+    bottom: 104px; /* 70px card offset + 34px inner padding */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 390px;
+    padding: 0 64px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
     z-index: 1;
   }
 
   .circle-btn {
-    width: 72px; height: 72px;
+    width: 32px; height: 32px;
     border-radius: 50%;
     border: none;
     background: #141414;
@@ -263,11 +265,9 @@
 <div class="bottom-panel">
   <div id="decoded" style="display:none"></div>
   <div id="current" style="display:none"></div>
-  <div style="display:flex;gap:16px;align-items:center;justify-content:center;">
-    <button class="circle-btn" id="deleteBinBtn" aria-label="Delete all"></button>
-    <button class="circle-btn" id="keyBtn" aria-label="Morse key"></button>
-    <button class="circle-btn" id="deleteBackBtn" aria-label="Delete last letter"></button>
-  </div>
+  <button class="circle-btn" id="deleteBinBtn" aria-label="Delete all" style="background:#BCBCBC"></button>
+  <button class="circle-btn" id="keyBtn" aria-label="Morse key" style="background:#FF3805"></button>
+  <button class="circle-btn" id="deleteBackBtn" aria-label="Delete last letter" style="background:#BCBCBC"></button>
 
 <script>
 const NODES = [
