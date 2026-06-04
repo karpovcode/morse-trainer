@@ -266,7 +266,9 @@
   }
   .btn-base {
     position: absolute;
-    bottom: 0;
+    bottom: -10px; /* centers 52px behind 32px button */
+    left: 50%;
+    transform: translateX(-50%);
     width: 52px; height: 52px;
     border-radius: 50%;
     background: linear-gradient(to bottom, rgba(0,0,0,0.60), #393939);
