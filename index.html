@@ -234,6 +234,21 @@
     opacity: 0.01;
   }
   .circle-btn.pressed { transform: scale(0.93); }
+  .btn-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-base {
+    position: absolute;
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.60), #393939);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: none;
+  }
   #deleteBinBtn, #deleteBackBtn, #keyBtn {
     box-shadow:
       0 7px 4px rgba(0,0,0,0.25),
@@ -272,9 +287,9 @@
 <div class="bottom-panel">
   <div id="decoded" style="display:none"></div>
   <div id="current" style="display:none"></div>
-  <button class="circle-btn" id="deleteBinBtn" aria-label="Delete all" style="background:#BCBCBC"></button>
-  <button class="circle-btn" id="keyBtn" aria-label="Morse key" style="background:#FF3805"></button>
-  <button class="circle-btn" id="deleteBackBtn" aria-label="Delete last letter" style="background:#BCBCBC"></button>
+  <div class="btn-wrap"><div class="btn-base"></div><button class="circle-btn" id="deleteBinBtn" aria-label="Delete all" style="background:#BCBCBC"></button></div>
+  <div class="btn-wrap"><div class="btn-base"></div><button class="circle-btn" id="keyBtn" aria-label="Morse key" style="background:#FF3805"></button></div>
+  <div class="btn-wrap"><div class="btn-base"></div><button class="circle-btn" id="deleteBackBtn" aria-label="Delete last letter" style="background:#BCBCBC"></button></div>
 
 <script>
 const NODES = [
