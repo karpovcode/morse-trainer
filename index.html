@@ -560,31 +560,6 @@ function deleteLastWord() {
   updateDecodedDisplay();
   updateDeleteButtons();
 }
-
-let backPressStart = 0;
-let backLongTimer = null;
-let backRepeatTimer = null;
-const BACK_LONG_MS = 400;
-const BACK_REPEAT_MS = 350;
-function onBackStart(e) {
-  e.preventDefault();
-  backPressStart = Date.now();
-  backLongTimer = setTimeout(() => {
-    deleteLastWord();
-    backRepeatTimer = setInterval(() => {
-      if (!decodedEl.textContent.trimEnd().length) { clearInterval(backRepeatTimer); return; }
-      deleteLastWord();
-    }, BACK_REPEAT_MS);
-  }, BACK_LONG_MS);
-}
-function onBackEnd(e) {
-  e.preventDefault();
-  const dur = Date.now() - backPressStart;
-  clearTimeout(backLongTimer);
-  clearInterval(backRepeatTimer);
-  backPressStart = 0; backLongTimer = null; backRepeatTimer = null;
-  if (dur < BACK_LONG_MS) deleteBack();
-}
 function deleteAll() {
   decodedEl.textContent = '';
   currentMorse = '';
