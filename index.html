@@ -291,6 +291,8 @@
       inset 0 2px 2px rgba(255,255,255,0.70),
       inset 0 -2px 2px rgba(0,0,0,0.40);
   }
+  .btn-wrap:has(#deleteBinBtn.pressed) .btn-icon { filter: drop-shadow(0 0 80px rgba(242,215,194,0.40)); }
+  .btn-wrap:has(#deleteBinBtn.pressed) .btn-icon path { fill: #F2D7C2; }
 
   iframe, [class*="chat"], [class*="comment"], [id*="chat"], [id*="comment"],
   [class*="widget"], [id*="widget"], [class*="bubble"], [id*="bubble"] {
