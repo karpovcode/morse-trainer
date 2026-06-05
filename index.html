@@ -117,8 +117,16 @@
     opacity: 0.5;
   }
 
-  .antenna { position: absolute; left: 200px; top: 270px; width: 30px; height: 54px; pointer-events: none; z-index: 2; }
-  .antenna-active { position: absolute; left: 200px; top: 270px; width: 30px; height: 54px; pointer-events: none; z-index: 3; display: none; overflow: visible; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
+  .ant-wrap { position: absolute; left: 195px; top: 270px; width: 41px; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; z-index: 2; overflow: visible; }
+  .ant-tri { width: 41px; height: 30px; background: linear-gradient(to bottom, rgba(0,0,0,0.30) 0px, transparent 8px), #141414; clip-path: path('M5.37 9.65 A6.5 6.5 0 0 1 11.04 0 L29.96 0 A6.5 6.5 0 0 1 35.63 9.65 L26.18 26.68 A6.5 6.5 0 0 1 14.82 26.68 Z'); position: relative; }
+  .ant-tri::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 200px 200px; opacity: 0.01; }
+  .ant-stem { width: 3px; height: 24px; background: #141414; border-radius: 2px; box-shadow: inset 0 -1px 0 rgba(255,255,255,0.10), inset 0 1px 4px rgba(0,0,0,0.30); overflow: hidden; position: relative; }
+  .ant-stem::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 200px 200px; opacity: 0.01; }
+  .ant-wrap.active { filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
+  .ant-wrap.active .ant-tri { background: #EEDB1B; }
+  .ant-wrap.active .ant-tri::after { opacity: 0; }
+  .ant-wrap.active .ant-stem { background: #EEDB1B; box-shadow: none; }
+  .ant-wrap.active .ant-stem::after { opacity: 0; }
   .line {
     position: absolute;
     background: #141414;
@@ -388,20 +396,15 @@ const V_LINES = [
 
 const tree = document.getElementById('tree');
 
-const ns = 'http://www.w3.org/2000/svg';
-const antenna = document.createElementNS(ns, 'svg');
-antenna.setAttribute('class', 'antenna');
-antenna.setAttribute('viewBox', '0 0 30 54');
-antenna.setAttribute('fill', 'none');
-antenna.innerHTML = `<defs><filter id="af" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB"><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="a1"/><feOffset in="a1" dy="1"/><feGaussianBlur stdDeviation="2"/><feComposite in2="a1" operator="arithmetic" k2="-1" k3="1"/><feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0"/><feBlend in2="SourceGraphic" result="s1"/><feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="a2"/><feOffset in="a2" dy="-1"/><feComposite in2="a2" operator="arithmetic" k2="-1" k3="1"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.1 0"/><feBlend in2="s1" result="s2"/><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0"/><feComponentTransfer><feFuncA type="linear" slope="0.01"/></feComponentTransfer><feComposite in2="SourceAlpha" operator="in"/><feBlend in2="s2"/></filter></defs><g filter="url(#af)"><path d="M13.2986 31.5C13.2986 30.6716 13.9701 30 14.7986 30C15.627 30 16.2986 30.6716 16.2986 31.5V52.5C16.2986 53.3284 15.627 54 14.7986 54C13.9701 54 13.2986 53.3284 13.2986 52.5V31.5Z" fill="#141414"/><path d="M3.87 9.03 A6.5 6.5 0 0 1 9.83 0 L20.17 0 A6.5 6.5 0 0 1 26.13 9.03 L20.97 21.08 A6.5 6.5 0 0 1 9.03 21.08 Z" fill="#141414"/></g>`;
-tree.appendChild(antenna);
-
-const antennaActive = document.createElementNS(ns, 'svg');
-antennaActive.setAttribute('class', 'antenna-active');
-antennaActive.setAttribute('viewBox', '0 0 30 54');
-antennaActive.setAttribute('fill', 'none');
-antennaActive.innerHTML = `<path d="M13.2986 31.5C13.2986 30.6716 13.9701 30 14.7986 30C15.627 30 16.2986 30.6716 16.2986 31.5V52.5C16.2986 53.3284 15.627 54 14.7986 54C13.9701 54 13.2986 53.3284 13.2986 52.5V31.5Z" fill="#EEDB1B"/><path d="M3.87 9.03 A6.5 6.5 0 0 1 9.83 0 L20.17 0 A6.5 6.5 0 0 1 26.13 9.03 L20.97 21.08 A6.5 6.5 0 0 1 9.03 21.08 Z" fill="#EEDB1B"/>`;
-tree.appendChild(antennaActive);
+const antWrap = document.createElement('div');
+antWrap.className = 'ant-wrap';
+const antTri = document.createElement('div');
+antTri.className = 'ant-tri';
+const antStem = document.createElement('div');
+antStem.className = 'ant-stem';
+antWrap.appendChild(antTri);
+antWrap.appendChild(antStem);
+tree.appendChild(antWrap);
 
 H_LINES.forEach(l => {
   const el = document.createElement('div');
@@ -620,7 +623,7 @@ function onPressStart(e) {
   if (pressStart) return;
   pressStart = Date.now();
   keyBtn.classList.add('pressed');
-  antennaActive.style.display = 'block';
+  antWrap.classList.add('active');
   clearTimeout(letterTimer);
   clearTimeout(wordTimer);
   document.getElementById('deleteBinBtn').classList.add('visible');
@@ -634,7 +637,7 @@ function onPressEnd(e) {
   const dur = Date.now() - pressStart;
   pressStart = 0;
   keyBtn.classList.remove('pressed');
-  antennaActive.style.display = 'none';
+  antWrap.classList.remove('active');
   stopTone();
   clearPreview();
   addSymbol(dur < DOT_MAX_MS ? '.' : '-');
