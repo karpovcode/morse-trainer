@@ -472,16 +472,22 @@ function hideCursor() {
 
 let audioCtx = null;
 let toneNode = null;
+let toneGen = 0;
 
 function initAudio() {
   if (audioCtx) return;
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  try {
+    const buf = audioCtx.createBuffer(1, 1, audioCtx.sampleRate);
+    const src = audioCtx.createBufferSource();
+    src.buffer = buf;
+    src.connect(audioCtx.destination);
+    src.start(0);
+  } catch(e) {}
   if (audioCtx.state === 'suspended') audioCtx.resume();
 }
-document.addEventListener('touchstart', initAudio, { once: true, passive: true });
-document.addEventListener('mousedown', initAudio, { once: true });
-
-let toneGen = 0;
+document.addEventListener('touchstart', initAudio, { once: true, passive: true, capture: true });
+document.addEventListener('mousedown', initAudio, { once: true, capture: true });
 
 function startTone() {
   if (!audioCtx) initAudio();
@@ -493,7 +499,8 @@ function startTone() {
     const gain = audioCtx.createGain();
     osc.type = 'sine';
     osc.frequency.value = 700;
-    gain.gain.value = 0.5;
+    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.005);
     osc.connect(gain).connect(audioCtx.destination);
     osc.start();
     toneNode = { osc, gain };
@@ -510,8 +517,11 @@ function stopTone() {
   if (!toneNode) return;
   const { osc, gain } = toneNode;
   toneNode = null;
-  gain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.001);
-  setTimeout(() => { try { osc.stop(); } catch(e){} }, 20);
+  const t = audioCtx.currentTime;
+  gain.gain.cancelScheduledValues(t);
+  gain.gain.setValueAtTime(gain.gain.value, t);
+  gain.gain.linearRampToValueAtTime(0, t + 0.015);
+  setTimeout(() => { try { osc.stop(); } catch(e){} }, 50);
 }
 
 function clearActiveNode() {
