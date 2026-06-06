@@ -517,8 +517,15 @@ function updateDecodedDisplay() {
   const preview = currentMorse ? (MORSE_TO_LETTER[currentMorse] || '') : '';
   document.getElementById('committedSpan').textContent = decodedEl.textContent;
   document.getElementById('previewSpan').textContent = preview;
-  const isEmpty = !decodedEl.textContent && !preview;
-  document.getElementById('cursorSpan').style.display = isEmpty ? '' : 'none';
+  const cursor = document.getElementById('cursorSpan');
+  if (currentMorse.length === 0) {
+    cursor.style.display = '';
+    cursor.style.animation = 'none';
+    cursor.offsetHeight;
+    cursor.style.animation = '';
+  } else {
+    cursor.style.display = 'none';
+  }
 }
 function updateDeleteButtons() {
   const hasAny = decodedEl.textContent.length > 0 || !!(currentMorse && MORSE_TO_LETTER[currentMorse]);
