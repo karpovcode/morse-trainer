@@ -65,7 +65,7 @@
   }
   .tree-wrap {
     position: fixed;
-    bottom: calc(140px + env(safe-area-inset-bottom));
+    bottom: calc(70px + env(safe-area-inset-bottom));
     height: 549px;
     left: 0; right: 0;
     max-width: 430px;
@@ -90,7 +90,7 @@
 
   .tree-card {
     position: fixed;
-    bottom: calc(70px + env(safe-area-inset-bottom));
+    bottom: env(safe-area-inset-bottom);
     left: 50%;
     transform: translateX(-50%);
     width: 390px;
@@ -117,8 +117,8 @@
     opacity: 0.5;
   }
 
-  .ant-wrap { position: absolute; left: 195px; top: 270px; width: 41px; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; z-index: 2; overflow: visible; }
-  .ant-tri { width: 41px; height: 30px; background: linear-gradient(to bottom, rgba(0,0,0,0.30) 0px, transparent 8px), #141414; clip-path: path('M5.37 9.65 A6.5 6.5 0 0 1 11.04 0 L29.96 0 A6.5 6.5 0 0 1 35.63 9.65 L26.18 26.68 A6.5 6.5 0 0 1 14.82 26.68 Z'); position: relative; }
+  .ant-wrap { position: absolute; left: 195px; top: 282px; width: 41px; display: flex; flex-direction: column; align-items: center; gap: 3px; pointer-events: none; z-index: 2; overflow: visible; }
+  .ant-tri { width: 30px; height: 26px; background: linear-gradient(to bottom, rgba(0,0,0,0.30) 0px, transparent 8px), #141414; clip-path: path("M22.8822 0H6.51103C1.3025 0 -1.79053 5.8197 1.1236 10.1367L9.20978 22.1156C11.7693 25.9073 17.3409 25.9388 19.9432 22.1763L28.2281 10.1974C31.2099 5.88616 28.1241 0 22.8822 0Z"); position: relative; }
   .ant-tri::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 200px 200px; opacity: 0.01; }
   .ant-stem { width: 3px; height: 24px; background: #141414; border-radius: 2px; box-shadow: inset 0 -1px 0 rgba(255,255,255,0.10), inset 0 1px 4px rgba(0,0,0,0.30); overflow: hidden; position: relative; }
   .ant-stem::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 200px 200px; opacity: 0.01; }
@@ -221,7 +221,7 @@
 
   .bottom-panel {
     position: fixed;
-    bottom: calc(104px + env(safe-area-inset-bottom));
+    bottom: calc(34px + env(safe-area-inset-bottom));
     left: 0; right: 0;
     max-width: 390px;
     margin: 0 auto;
@@ -343,58 +343,57 @@
 
 <script>
 const NODES = [
-  { id: 'T', type: 'dash-h', x: 169, y: 318, morse: '-' },
-  { id: 'E', type: 'dot',    x: 224, y: 314, morse: '.' },
-  { id: 'M', type: 'dash-h', x: 116, y: 318, morse: '--' },
-  { id: 'N', type: 'dot',    x: 171, y: 459, morse: '-.' },
-  { id: 'I', type: 'dot',    x: 265, y: 314, morse: '..' },
-  { id: 'A', type: 'dash-v', x: 226, y: 456, morse: '.-' },
-  { id: 'O', type: 'dash-h', x: 63,  y: 318, morse: '---' },
-  { id: 'G', type: 'dot',    x: 118, y: 362, morse: '--.' },
-  { id: 'K', type: 'dash-h', x: 116, y: 463, morse: '-.-' },
-  { id: 'D', type: 'dot',    x: 171, y: 548, morse: '-..' },
-  { id: 'S', type: 'dot',    x: 306, y: 314, morse: '...' },
-  { id: 'R', type: 'dot',    x: 265, y: 459, morse: '.-.' },
-  { id: 'W', type: 'dash-v', x: 226, y: 546, morse: '.--' },
-  { id: 'H', type: 'dot',    x: 347, y: 314, morse: '....' },
-  { id: 'V', type: 'dash-v', x: 308, y: 360, morse: '...-' },
-  { id: 'F', type: 'dot',    x: 265, y: 410, morse: '..-.' },
-  { id: 'L', type: 'dot',    x: 306, y: 459, morse: '.-..' },
-  { id: 'P', type: 'dot',    x: 265, y: 549, morse: '.--.' },
-  { id: 'J', type: 'dash-v', x: 226, y: 592, morse: '.---' },
-  { id: 'B', type: 'dot',    x: 171, y: 596, morse: '-...' },
-  { id: 'X', type: 'dash-h', x: 116, y: 552, morse: '-..-' },
-  { id: 'Y', type: 'dash-h', x: 63,  y: 463, morse: '-.--' },
-  { id: 'Z', type: 'dot',    x: 118, y: 410, morse: '--..' },
-  { id: 'Q', type: 'dash-h', x: 63,  y: 364, morse: '--.-' },
-  { id: 'C', type: 'dot',    x: 118, y: 507, morse: '-.-.' },
-  { id: 'U', type: 'dash-v', x: 267, y: 360, morse: '..-' },
+  { id: 'T', type: 'dash-h', x: 166, y: 318, morse: '-' },
+  { id: 'E', type: 'dot',    x: 236, y: 314, morse: '.' },
+  { id: 'M', type: 'dash-h', x: 113, y: 318, morse: '--' },
+  { id: 'N', type: 'dot',    x: 168, y: 459, morse: '-.' },
+  { id: 'I', type: 'dot',    x: 277, y: 314, morse: '..' },
+  { id: 'A', type: 'dash-v', x: 238, y: 458, morse: '.-' },
+  { id: 'O', type: 'dash-h', x: 60,  y: 318, morse: '---' },
+  { id: 'G', type: 'dot',    x: 115, y: 362, morse: '--.' },
+  { id: 'K', type: 'dash-h', x: 113, y: 463, morse: '-.-' },
+  { id: 'D', type: 'dot',    x: 169, y: 550, morse: '-..' },
+  { id: 'S', type: 'dot',    x: 318, y: 314, morse: '...' },
+  { id: 'R', type: 'dot',    x: 277, y: 459, morse: '.-.' },
+  { id: 'W', type: 'dash-v', x: 238, y: 548, morse: '.--' },
+  { id: 'H', type: 'dot',    x: 359, y: 314, morse: '....' },
+  { id: 'V', type: 'dash-v', x: 320, y: 360, morse: '...-' },
+  { id: 'F', type: 'dot',    x: 277, y: 410, morse: '..-.' },
+  { id: 'L', type: 'dot',    x: 318, y: 459, morse: '.-..' },
+  { id: 'P', type: 'dot',    x: 277, y: 550, morse: '.--.' },
+  { id: 'J', type: 'dash-v', x: 238, y: 596, morse: '.---' },
+  { id: 'B', type: 'dot',    x: 168, y: 598, morse: '-...' },
+  { id: 'X', type: 'dash-h', x: 113, y: 552, morse: '-..-' },
+  { id: 'Y', type: 'dash-h', x: 60,  y: 463, morse: '-.--' },
+  { id: 'Z', type: 'dot',    x: 115, y: 410, morse: '--..' },
+  { id: 'Q', type: 'dash-h', x: 60,  y: 364, morse: '--.-' },
+  { id: 'C', type: 'dot',    x: 115, y: 507, morse: '-.-.' },
+  { id: 'U', type: 'dash-v', x: 279, y: 360, morse: '..-' },
 ];
 
 const LABELS = [
-  ['O', 77, 315], ['M', 131, 315], ['T', 184, 315], ['E', 237, 315], ['I', 278, 315], ['S', 319, 315], ['H', 360, 315],
-  ['Q', 78, 406], ['G', 131, 386], ['U', 278, 387], ['V', 319, 387],
-  ['Z', 131, 434], ['F', 278, 434], ['K', 131, 460], ['Y', 78, 460],
-  ['N', 184, 469], ['A', 237, 493], ['L', 319, 484], ['R', 278, 509],
-  ['D', 184, 558], ['W', 237, 583], ['P', 278, 573],
-  ['X', 131, 573], ['B', 184, 620], ['J', 237, 619],
-  ['C', 131, 531],
+  ['O', 74, 315], ['M', 128, 315], ['T', 181, 315], ['E', 249, 315], ['I', 290, 315], ['S', 331, 315], ['H', 372, 315],
+  ['Q', 75, 410], ['G', 152, 386], ['U', 266, 387], ['V', 354, 387],
+  ['Z', 152, 434], ['F', 313, 434], ['K', 128, 460], ['Y', 75, 460],
+  ['N', 199, 460], ['A', 228, 502], ['L', 354, 484], ['R', 290, 509],
+  ['D', 199, 552], ['W', 228, 598], ['P', 313, 576],
+  ['X', 101, 576], ['B', 155, 622], ['J', 272, 622],
+  ['C', 152, 531],
 ];
 
 const H_LINES = [
-  { x:  95, y: 324, w: 18 }, { x: 148, y: 324, w: 18 }, { x: 201, y: 324, w: 20 },
-  { x: 252, y: 324, w: 10 }, { x: 293, y: 324, w: 10 }, { x: 334, y: 324, w: 10 },
-  { x:  95, y: 372, w: 20 },
-  { x:  95, y: 469, w: 18 }, { x: 148, y: 469, w: 20 },
-  { x: 250, y: 469, w: 12 }, { x: 250, y: 559, w: 12 },
-  { x: 293, y: 469, w: 10 }, { x: 148, y: 558, w: 20 },
+  { x:  92, y: 326, w: 18 }, { x: 145, y: 326, w: 18 }, { x: 198, y: 326, w: 13 }, 
+  { x: 220, y: 326, w: 13 },
+  { x: 264, y: 326, w: 10 }, { x: 305, y: 326, w: 10 }, { x: 346, y: 326, w: 10 },
+  { x:  92, y: 372, w: 20 },
+  { x:  92, y: 471, w: 18 }, { x: 145, y: 471, w: 20 },
+  { x: 262, y: 471, w: 12 }, { x: 262, y: 560, w: 12 },
+  { x: 305, y: 471, w: 10 }, { x: 145, y: 560, w: 20 },
 ];
 const V_LINES = [
-  { x: 129, y: 333, h: 29 }, { x: 129, y: 362, h: 26 }, { x: 129, y: 385, h: 25 }, { x: 276, y: 337, h: 23 }, { x: 276, y: 360, h: 20 }, { x: 276, y: 389, h: 21 }, { x: 276, y: 410, h: 23 },
-  { x: 317, y: 337, h: 23 }, { x: 317, y: 360, h: 20 }, { x: 182, y: 333, h: 126 }, { x: 182, y: 459, h: 125 }, { x: 235, y: 337, h: 119 }, { x: 235, y: 456, h: 119 },
-  { x: 129, y: 410, h: 23 }, { x: 129, y: 478, h: 29 }, { x: 129, y: 507, h: 23 },
-  { x: 182, y: 548, h: 65 }, { x: 235, y: 546, h: 59 },
-  { x: 182, y: 596, h: 23 }, { x: 235, y: 592, h: 19 },
+  { x: 126, y: 342, h: 18 }, { x: 126, y: 390, h: 18 }, { x: 288, y: 341, h: 18 }, { x: 288, y: 389, h: 21 },
+  { x: 329, y: 341, h: 18 }, { x: 179, y: 342, h: 115 }, { x: 179, y: 488, h: 60 }, { x: 247, y: 491, h: 55 }, { x: 247, y: 342, h: 115 }, { x: 126, y: 487, h: 18 },
+  { x: 179, y: 578, h: 18 }, { x: 247, y: 580, h: 14 },
 ];
 
 const tree = document.getElementById('tree');
@@ -466,8 +465,16 @@ let previewTimer = null;
 let audioCtx = null;
 let toneNode = null;
 
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === 'suspended') audioCtx.resume();
+}
+document.addEventListener('touchstart', initAudio, { once: true, passive: true });
+document.addEventListener('mousedown', initAudio, { once: true });
+
 function startTone() {
-  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (!audioCtx) initAudio();
   if (audioCtx.state === 'suspended') audioCtx.resume();
   if (toneNode) return;
   const osc = audioCtx.createOscillator();
