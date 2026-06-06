@@ -65,7 +65,7 @@
   }
   .tree-wrap {
     position: fixed;
-    bottom: calc(90px + env(safe-area-inset-bottom));
+    bottom: 90px;
     height: 549px;
     left: 0; right: 0;
     max-width: 430px;
@@ -90,7 +90,7 @@
 
   .tree-card {
     position: fixed;
-    bottom: calc(20px + env(safe-area-inset-bottom));
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     width: 390px;
@@ -220,7 +220,7 @@
 
   .bottom-panel {
     position: fixed;
-    bottom: calc(54px + env(safe-area-inset-bottom));
+    bottom: 54px;
     left: 0; right: 0;
     max-width: 390px;
     margin: 0 auto;
@@ -309,6 +309,11 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.4' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
     background-repeat: repeat;
     background-size: 200px 200px;
+  }
+  @media (display-mode: standalone) {
+    .tree-card  { bottom: calc(20px + env(safe-area-inset-bottom)); }
+    .bottom-panel { bottom: calc(54px + env(safe-area-inset-bottom)); }
+    .tree-wrap  { bottom: calc(90px + env(safe-area-inset-bottom)); }
   }
 </style>
 </head>
