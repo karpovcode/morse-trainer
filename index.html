@@ -122,10 +122,9 @@
   .ant-tri::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 200px 200px; opacity: 0.01; }
   .ant-stem { width: 3px; height: 24px; background: #141414; border-radius: 2px; box-shadow: inset 0 -1px 0 rgba(255,255,255,0.10), inset 0 1px 4px rgba(0,0,0,0.30); overflow: hidden; position: relative; }
   .ant-stem::after { content: ''; position: absolute; inset: 0; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.1' numOctaves='1' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E"); background-repeat: repeat; background-size: 200px 200px; opacity: 0.01; }
-  .ant-wrap.active { filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
-  .ant-wrap.active .ant-tri { background: #EEDB1B; }
+  .ant-wrap.active .ant-tri { background: #EEDB1B; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
   .ant-wrap.active .ant-tri::after { opacity: 0; }
-  .ant-wrap.active .ant-stem { background: #EEDB1B; box-shadow: none; }
+  .ant-wrap.active .ant-stem { background: #EEDB1B; box-shadow: none; filter: drop-shadow(0 0 38.88px rgba(238,219,28,0.60)); }
   .ant-wrap.active .ant-stem::after { opacity: 0; }
   .line {
     position: absolute;
